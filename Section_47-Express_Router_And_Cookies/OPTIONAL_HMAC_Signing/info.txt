@@ -1,0 +1,3 @@
+HMAC generator --> https://www.freeformatter.com/hmac-generator.html
+
+code for cookie-parser --> https://github.com/tj/node-cookie-signature/blob/master/index.js

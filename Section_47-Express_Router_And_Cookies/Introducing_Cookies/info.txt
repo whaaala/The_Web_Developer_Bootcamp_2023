@@ -1,0 +1,10 @@
+Cookies
+  Cookies are little bits of information that are can be stored in user's browser 
+   And are associated with some web page 
+
+  Once a Cookie is set 
+   the user's browser will send the cookie on every subsequent request to the site
+   this is a way of making HTTP requests have some state (it allows use to making HTTP request stateful)
+ 
+ things that cookies are used for: https://en.wikipedia.org/wiki/HTTP_cookie#Uses
+ 

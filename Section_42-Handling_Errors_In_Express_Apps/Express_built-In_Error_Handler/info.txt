@@ -1,0 +1,7 @@
+Errors 
+  Express has its own built in error handler, that is added at the end of a middleware error handling stack
+    Express error handling --> https://expressjs.com/en/guide/error-handling.html
+    it uses a status code that is 500 by default, but that can be changed
+    it also includes a stack trace in some cases (the stack trace only runs in dev mode)
+
+

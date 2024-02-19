@@ -1,0 +1,12 @@
+find() --> https://mongoosejs.com/docs/api/model.html#Model.find()
+findById() --> https://mongoosejs.com/docs/api/model.html#Model.findById()
+findByIdAndDelete() --> https://mongoosejs.com/docs/api/model.html#Model.findByIdAndDelete()
+findByIdAndRemove() --> https://mongoosejs.com/docs/api/model.html#Model.findByIdAndRemove()
+findByIdAndUpdate() --> https://mongoosejs.com/docs/api/model.html#Model.findByIdAndUpdate()
+findOne() --> https://mongoosejs.com/docs/api/model.html#Model.findOne()
+findOneAndDelete() --> https://mongoosejs.com/docs/api/model.html#Model.findOneAndDelete()
+findOneAndRemove() --> https://mongoosejs.com/docs/api/model.html#Model.findOneAndRemove()
+findOneAndReplace() --> https://mongoosejs.com/docs/api/model.html#Model.findOneAndReplace()
+findOneAndUpdate() --> https://mongoosejs.com/docs/api/model.html#Model.findOneAndUpdate()
+
+Query options that can be used in find--> https://www.mongodb.com/docs/manual/reference/operator/query/

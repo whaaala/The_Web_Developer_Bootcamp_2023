@@ -1,0 +1,40 @@
+Multer-storage-cloudinary --> https://github.com/affanshahid/multer-storage-cloudinary
+ this works with multer and cloudinary 
+  it helps to make it smooth to use files that multer is parseing to cloudinary
+
+ it also works so when you recieve the url back from cloudinary, multer add them into your project 
+  so that you can have access to the route handling callbacks
+
+  Packages to Install
+    npm i cloudinary 
+    npm i multer-storage-cloudinary
+
+  Create a folder for cloudinary
+   and create a index.js file in the cloudinary folder
+    and require the packages needed 
+
+  Useage: 
+      const cloudinary = require('cloudinary').v2;
+      const { CloudinaryStorage } = require('multer-storage-cloudinary');
+      const express = require('express');
+      const multer = require('multer');
+
+      const app = express();
+
+      const storage = new CloudinaryStorage({
+        cloudinary: cloudinary,
+        params: {
+          folder: 'some-folder-name',
+          format: async (req, file) => 'png', // supports promises as well
+          public_id: (req, file) => 'computed-filename-using-request',
+        },
+      });
+
+      const parser = multer({ storage: storage });
+
+      app.post('/upload', parser.single('image'), function (req, res) {
+        res.json(req.file);
+      });
+
+    
+      

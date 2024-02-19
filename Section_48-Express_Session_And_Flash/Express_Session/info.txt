@@ -1,0 +1,9 @@
+Express Session Package --> https://www.npmjs.com/package/express-session
+
+The storage of session on the server side is in Memory (The default store is: MemoryStore instance)
+  this is not the place to store sessions on production (as it is not designed for use in production)
+   on productin session stores can be used: redis
+    compatible session storage --> https://www.npmjs.com/package/express-session#compatible-session-stores
+
+    
+  

@@ -1,0 +1,2 @@
+starability --> https://github.com/LunarLogic/starability
+ this is a CSS file that can be used to setup basic rating functionality in your project

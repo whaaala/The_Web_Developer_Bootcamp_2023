@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+}
+
+div{
+    width: 200px;
+    height: 200px;
+    background-color:  #e5989b ;
+}
+
+#one {
+    background-color:  #e5989b ;
+    border-width: 5px;
+    border-color: black;
+    border-style: solid;
+    box-sizing: border-box;
+    padding-right: 100px;
+    margin-left: 50px;
+    margin-bottom:100px ;
+}
+
+#two {
+    background-color: #b5838d;
+    border-color: #ffcdb2;
+    border-width: 3px;
+    border-style: dashed;
+    border-left-width: 8px;
+    margin: 200px;
+}
+
+#three {
+    background-color: #6d6875;
+    border: 4px solid black;
+}

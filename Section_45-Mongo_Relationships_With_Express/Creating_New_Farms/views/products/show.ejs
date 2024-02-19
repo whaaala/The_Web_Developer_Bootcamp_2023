@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= product.name %></title>
+</head>
+<body>
+    <h1><%= product.name %></h1>
+    <ul>
+        <li>Price: £<%= product.price %></li>
+        <!-- Create a link for the category that will cliked on will list all the products in that category -->
+                          <!-- Use a query string: ?category= <%#= product.category %>to filter in the DB -->
+        <li>Category: <a href="/products?category=<%= product.category %>"><%= product.category %></a></li>
+    </ul>
+    <a href="/products">All Products</a>
+    <a href="/products/<%= product._id %>/edit">Edit Products</a>
+
+                                       <!-- SET UP A DELETE FORM  -->
+     <!-- Install method-override and use it to allow a DELETE method to be used in the form inside of express and use the attribute name for the method override (set in app.use) as a query string in the action. And MAKE SURE THE METHOD OF THE FORM IS A POST REQUEST-->
+    <form action="/products/<%= product._id %>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= campground.title %></title>
+</head>
+<body>
+    <h1><%= campground.title %></h1>
+    <h2><%= campground.location %></h2>
+    <P>
+        <a href="/campgrounds/<%=campground._id%>/edit">Edit</a>
+    </P>
+    <P>
+                                                <!-- SET UP A DELETE FORM  -->
+     <!-- Install method-override and use it to allow a DELETE method to be used in the form inside of express and use the attribute name for the method override (set in app.use) as a query string in the action. And MAKE SURE THE METHOD OF THE FORM IS A POST REQUEST-->
+        <form action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+            <button>Delete</button>
+        </form>
+    </P>
+    <footer>
+        <a href="/campgrounds">All Campgrounds</a>
+    </footer>
+</body>
+</html>

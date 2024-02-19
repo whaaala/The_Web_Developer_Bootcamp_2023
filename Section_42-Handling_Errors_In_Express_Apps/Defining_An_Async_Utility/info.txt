@@ -1,0 +1,6 @@
+Async Utility
+  It is annoying and not ideal to always have to add try-catch to all Async route callback in the route middleware (because always all the routes you write will have Async callback in Express)
+   
+    Therefore a function can be created that the entire callback function in passed into
+       then function can then be used as a WRAPPER for a callback function in a route      
+   

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Farms</title>
+</head>
+<body>
+    <!-- display Farms -->
+    <!-- Display the message from flash if a farm is new created and the page is redirected here -->
+    <%= messages %>
+    <h1>All Farms</h1>
+    <ul?>
+        <% for(let farm of farms){ %>
+            <li><a href="/farms/<%=farm._id%>"> <%= farm.name %> </a></li>
+        <% } %>
+    </ul>
+    <div style="margin-top: 16px;">
+        <a href="/farms/new" style="margin-top: 4px;">Add farm</a>
+    </div>
+</body>
+</html>

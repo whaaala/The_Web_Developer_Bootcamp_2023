@@ -1,0 +1,6 @@
+To create dummy DATA for the project 
+  In the seeds folder 
+        There is an index.js file, run this file 
+          Running the file will delete all the documents in the collection 
+          And created 50 new documents in the collection
+             

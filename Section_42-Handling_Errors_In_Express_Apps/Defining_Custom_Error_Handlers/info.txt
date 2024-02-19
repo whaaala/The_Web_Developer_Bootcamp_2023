@@ -1,0 +1,12 @@
+Errors
+  A middleware can be used to handle erorrs 
+    For a middleware to be considered as an error handling function in express
+      Four arguments has to be passed to the middleware: 
+         app.use((err, req, res, next) => {
+              console.error(err.stack)
+              res.status(500).send('Something broke!')
+          })
+      
+  This middleware as to be place as the last route in the routes ordering list that you creating 
+
+

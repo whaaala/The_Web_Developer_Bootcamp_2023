@@ -1,0 +1,15 @@
+<% layout('layouts/boilerplate') %>
+<!-- Install method-override and use it to allow a PATH or a PUT method to be used in the form inside of express and use the attribute name for the method override (set in app.use) as a query string in the action. And MAKE SURE THE METHOD OF THE FORM IS A POST REQUEST-->
+<form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST">
+    <div>
+        <label for="title">Title</label>
+        <!-- THE square bracket next to campground: (campground[title]) is used to ground all things passed in under campground: When the DATA IS SENT via POST request through express App (to the server) everything in the req.body will be stored under campground (IT IS USED TO GROUP CONTENT TOGETHER)-->
+        <input type="text" id="title" name="campground[title]" value="<%=campground.title %>">
+    </div>
+    <div>
+        <label for="location">Location</label>
+        <input type="text" id="location" name="campground[location]" value="<%=campground.location %>">
+    </div>
+    <button>Update Campground</button>
+</form>
+<a href="/campgrounds/<%= campground._id %>">Back To Campground</a>

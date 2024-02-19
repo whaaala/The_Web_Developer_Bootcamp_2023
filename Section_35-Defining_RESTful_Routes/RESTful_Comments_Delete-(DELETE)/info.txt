@@ -1,0 +1,7 @@
+Method-override --> http://expressjs.com/en/resources/middleware/method-override.html
+
+
+HTML Form can ONLY SEND A POST request OR A GET request, Therefore it is an issue to send a PUT request OR A PATCH request with an HTML Form 
+  
+   Hence while MethodOverride is used to fake the PUT request and the PATCH request in an HTML Form
+

@@ -1,0 +1,11 @@
+Sign Cookies 
+  The idea behind signing something is programming is usually refering to a digital signature or a cyrptographic signature
+    the idea is not to hide information instead it is to be able to verify its integrity (verify thatt something has not changed).
+
+  signing a cookie means 
+    take a cookie that is sent to a user, and send it as a signed cookie
+     by having cookie-parser sign it using a secret code that is specified 
+      then each time a request is made by the user, the request will be sent along with the signed cookie
+    then cookie-parser will be able to check and tell if the signed cookie is tempered with
+
+   There signing a cookie is to make sure that the original DATA that was sent to the client (the browser) is still the DATA been sent back to the server

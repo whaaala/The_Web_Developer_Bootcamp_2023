@@ -1,0 +1,22 @@
+Mongoose --> https://mongoosejs.com/
+
+Use MongoDB driver for Nodejs to connect to mongoose database --> https://www.mongodb.com/docs/drivers/node/current/
+
+
+mongoese connection to mongodb-->  mongoose.connect('mongodb://127.0.0.1:27017/your_database_name_here')
+
+If you are using the latest versions of Node.js with mongoose, and you get a connection refused ECONNREFUSED error message when connecting your app to the database, then you might need to change localhost to 127.0.0.1 in your mongoose.connect database connection string:
+
+DeprecationWarning: Mongoose: the `strictQuery` option will be switched back to `false` by default in Mongoose 7. Use `mongoose.set('strictQuery', false);` if you want to prepare for this change. Or use `mongoose.set('strictQuery', true);` to suppress this warning.
+
+/************************************************************************************************************************
+It seems like there is a potential bug occurring to people who are using the newest versions of Node.js when using the .load index.js command while requiring the mongoose module and executing the lecture code in the JS file. The bug when you enter the .load index.js command in the node shell manifests as what seems to be an infinite loop printing the
+const mongoose = require('mongoose'); line of code repeatedly.
+
+We are hoping that this gets resolved with new versions of Node.js and the mongoose module, but in the meantime, here is a SOLUTION:
+
+Instead of using .load index.js inside of the node shell, use the command:
+node -i -e "$(< index.js)" in the system terminal (outside of the node shell, just be sure that you first change directories into the folder containing the index.js file) — this will load the file and start the node shell with this one command instead, and then it should work. Be sure to type out the command exactly as shown above.
+
+* Note: if your computer is running on the Windows operating system, then you should use the command mentioned above in the Git Bash terminal. You can find a written lecture note about using the Git Bash terminal while following this course on Windows on this link.
+**************************************************************************************************************************/

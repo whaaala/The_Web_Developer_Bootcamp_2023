@@ -1,0 +1,2 @@
+<% %>  --> is used to add JS in the template of EJS with it been render to the template 
+  FYI check views/random.ejs  TO SEE 

@@ -1,0 +1,8 @@
+ Mongoose Error 
+  A common error in Mongoose are validation errors 
+   currently you are catching Mongoose errors and taking the default and doing something with it.
+
+  But a custom feedback erorr can be created for Mongoose 
+   there are destint type of categories of error for Mongoose
+    Therefore every Mongoose error has a property called: name
+   

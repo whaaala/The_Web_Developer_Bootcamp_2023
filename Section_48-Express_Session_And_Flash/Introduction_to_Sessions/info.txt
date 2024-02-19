@@ -1,0 +1,15 @@
+Sessions 
+  This are similar to idea of cookies in the sense that we are trying to add in some statefulness to HTTP (HTTP is a stateless Protocol)
+  We are trying to SAVE or SHARE some information between one HTTP request to the next
+
+  Sessions
+     Are on the Server side 
+      The actual DATA  itself is stored on the server side
+    
+    Why not cookies instead of Sessions
+     cookies have a maximum size 
+       there is a number of cookies you can have per domain and the size of each cookie
+     Cookies are not as secure as storing information on the server side
+
+     The idea of a session is that we store information on the server side
+      And a little cookie is sent back to the client that provides information to unlock the session

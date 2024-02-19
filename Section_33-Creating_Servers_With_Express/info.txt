@@ -1,0 +1,6 @@
+Express Home Page --> https://expressjs.com/
+
+EXPRESS DOCS --> https://expressjs.com/en/4x/api.html
+
+NODEMON  --> https://www.npmjs.com/package/nodemon {THIS IS USED TO NOT ALWAYS RESTART A SERVER WHEN A CHANGE IS MADE}
+

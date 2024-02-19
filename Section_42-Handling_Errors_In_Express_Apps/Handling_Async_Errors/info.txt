@@ -1,0 +1,4 @@
+Handle Async Errors
+    Aynsc Errors
+     for erros returned from Async functions that are called by route handlers amd middlewares, you MUST pass them to the next() function 
+       where express will catch and prosses them 

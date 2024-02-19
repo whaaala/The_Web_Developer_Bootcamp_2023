@@ -1,0 +1,13 @@
+Passwords Salting or Hash Salts
+ Salting is an extra step that is done (or taken) when hashing a password to make it harder to reverse engineer
+
+ The way it used is when a user's pasword needs be hashed 
+    a RANDOM value will be added to the password before the password is hashed (that random value is called salt) 
+    this helps to ensure unique hashes and mitigate common attacks
+
+
+
+
+
+
+ 

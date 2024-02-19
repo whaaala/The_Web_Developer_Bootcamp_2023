@@ -1,0 +1,10 @@
+express static file --> https://expressjs.com/en/starter/static-files.html
+
+express.static is something known as a middleware 
+
+And app.use (app.use is execurted for EVERY SINGLE REQUEST) is used to execute express.static: app.use(express.static('public'))
+   the 'public' argument passed in express.static is used to specify the folder that the assets should be retrieve from
+
+
+bootstrap --> https://getbootstrap.com/docs/5.3/getting-started/download/
+bootstrap JS does not work without Jquery

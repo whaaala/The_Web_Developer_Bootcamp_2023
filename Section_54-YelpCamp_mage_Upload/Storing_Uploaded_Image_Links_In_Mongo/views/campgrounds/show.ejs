@@ -1,0 +1,105 @@
+<% layout('layouts/boilerplate') %>
+<!-- Add the stars. CSS stylessheet from the public/stylesheets directory -->
+<link rel="stylesheet" href="/stylesheets/stars.css">
+<div class="row">
+    <div class="col-6">
+        <div class="card mb-3">
+          <!-- Loop over all the images to display them -->
+          <% for(let image of campground.images) { %>
+            <img src="<%=image.url%>" class="card-img-top" alt="...">
+          <% } %>
+            <div class="card-body">
+              <h5 class="card-title"><%= campground.title %></h5>
+              <p class="card-text"><%=campground.description %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-muted"><%= campground.location %></li>
+              <li class="list-group-item">Submitted by: <%= campground.author.username %></li>
+              <li class="list-group-item">£<%= campground.price %>/night</li>
+            </ul>
+            <!-- 
+               Hide this button if the campground is not created by the user who is logged in 
+                The way to do this: 
+                    is to check if the campground.author is equals to the current user logged id
+                    BUT just do this will break the page if a user is NOT logged in
+                 
+                 therefor you will have to check if a user is logged in also 
+            -->
+            <%if(currentUser && campground.author.equals(currentUser._id)){%>
+              <div class="card-body">
+                <a href="/campgrounds/<%=campground._id%>/edit" class="card-link btn btn-info">Edit</a>
+                                                           <!-- SET UP A DELETE FORM  -->
+                <!-- Install method-override and use it to allow a DELETE method to be used in the form inside of express and use the attribute name for the method override (set in app.use) as a query string in the action. And MAKE SURE THE METHOD OF THE FORM IS A POST REQUEST-->
+                <form class="d-inline" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+                  <button class="btn btn-danger">Delete</button>
+                </form>
+              </div>
+            <% } %>
+            <div class="card-footer text-body-secondary">
+                2 days ago
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+      <!-- If a user is not logged in, they should not be able to leave a review, 
+        Use: the currentUser variable created from req.user that passport provided 
+         to check if a user is logged in 
+      -->
+      <% if(currentUser) { %>
+        <h2>Leave a Review</h2>
+        <!-- use: novalidate attribute on the form in other to tell the browser not to do the validation, as boostrap will do the valiation instead, and use the JavaScript code to make it work -->
+       <form class="mb-3 validated-form" action="/campgrounds/<%=campground._id%>/reviews" method="POST" novalidate>
+         <div class="mb-3">
+           <!-- <label class="form-label" for="ratiing">Rating</label>
+           <input class="form-range" type="range" id="ratiing" min="1" max="5" name="review[rating]"> -->
+           
+           <fieldset class="starability-basic">
+              <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+              <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+              <label for="first-rate1" title="Terrible">1 star</label>
+              <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+              <label for="first-rate2" title="Not good">2 stars</label>
+              <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+              <label for="first-rate3" title="Average">3 stars</label>
+              <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+              <label for="first-rate4" title="Very good">4 stars</label>
+              <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+              <label for="first-rate5" title="Amazing">5 stars</label>
+          </fieldset>
+         </div>
+         <div class="mb-3">
+           <label class="form-label" for="body">Review</label>
+           <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+            <!-- This used to display/hidden the info below the input field (it from boostrap) -->
+            <div class="valid-feedback">Looks good!</div>
+         </div>
+         <button class="btn btn-success">Submit</button>
+       </form>
+
+      <% } %>
+     <!-- Display the Reviews asociated with this campground -->
+     <% for(let review of campground.reviews) {%>
+       <div class="card mb-3">
+         <div class="card-body">
+           <h5 class="card-title"><%=review.author.username%></h5>
+           <!-- Use the starability functionality to display the rating -->
+           <p class="starability-result" data-rating="<%=review.rating%>">
+             Rated: <%=review.rating%> stars
+           </p>
+           <!-- <h6 class="card-subtitle mb-2 text-body-secondary">By: <%#=review.author.username%></h6> -->
+           <p class="card-text">Review: <%=review.body%></p>
+                                                       <!-- SET UP A DELETE FORM  -->
+              <!-- Install method-override and use it to allow a DELETE method to be used in the form inside of express and use the attribute name for the method override (set in app.use) as a query string in the action. And MAKE SURE THE METHOD OF THE FORM IS A POST REQUEST-->
+                    <!-- THE ejs condition is to make sure that a user that did not create a review cannot delete it -->
+              <%if(currentUser && review.author.equals(currentUser._id)){%>
+                <form class="d-inline" action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                  <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+              <% } %>
+         </div>
+       </div>
+     <% } %>
+    </div>
+</div>
+
+

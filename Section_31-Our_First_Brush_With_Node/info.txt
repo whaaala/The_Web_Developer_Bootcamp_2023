@@ -1,0 +1,7 @@
+NodeJS url --> https://nodejs.org/en
+
+Desktop application build in JavaScript using Electron --> https://www.electronjs.org/docs/latest/
+
+NASA uses Nodejs --> https://openjsf.org/wp-content/uploads/sites/84/2020/02/Case_Study-Node.js-NASA.pdf
+
+A Game built with nodejs --> http://www.cross-code.com/en/home

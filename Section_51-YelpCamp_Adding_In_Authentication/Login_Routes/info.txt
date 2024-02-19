@@ -1,0 +1,8 @@
+passport Doc --> http://www.passportjs.org/
+
+passport local --> https://github.com/jaredhanson/passport-local
+
+passport local mongoose --> https://github.com/saintedlama/passport-local-mongoose
+
+
+

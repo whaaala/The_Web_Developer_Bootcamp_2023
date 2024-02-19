@@ -1,0 +1,27 @@
+<% layout('layouts/boilerplate') %>
+<div class="col-6 offset-3">
+    <h1>REGISTER!</h1>
+    <form action="/register" novalidate class="validated-form" method="POST">
+        <div class="mb-3">
+            <label class="form-label" for="username">Username</label>
+            <input class="form-control" type="text" id="username" name="username" required>
+            <!-- This used to display/hidden the info below the input field (it from boostrap) -->
+            <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-control" type="email" id="email" name="email" required>
+            <!-- This used to display/hidden the info below the input field (it from boostrap) -->
+            <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="password" required>
+            <!-- This used to display/hidden the info below the input field (it from boostrap) -->
+            <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-success">Register</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <h1>Edit</h1>
+    <!-- Install method-override and use it to allow a PATH or a PUT method to be used in the form inside of express and use the attribute name for the method override (set in app.use) as a query string in the action. And MAKE SURRE THE METHOD OF THE FORM IS A POST REQUEST-->
+    <form method="post" action="/comments/<%= comment.id %>?_method=PATCH">
+        <textarea name="comment" id="" cols="30" rows="10">
+            <%= comment.comment%>
+        </textarea>
+        <button>Save</button>
+    </form>
+
+</body>
+</html>

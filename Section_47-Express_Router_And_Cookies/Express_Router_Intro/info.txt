@@ -1,0 +1,9 @@
+Writting routes in just one file in express make it becomes cumbersome and really hard to navigate the file 
+
+Express Router
+  To deal with this Express provides this thing called: Express Router
+                Express Router --> https://expressjs.com/en/4x/api.html#express.router
+   Router
+    A router object is an isolated instance of middleware and routes
+     this is like a min application (that has some routes, maybe some middleware) that combined with other routers to build a full application
+     It is useful in reducing duplication of routes in your application

@@ -1,0 +1,55 @@
+With a generic form a file input can be put in the form 
+ but the file information will not be sent properly, if you are using a default HTML form 
+  And this is because of the encoding type attribute on a form with is: 
+     application/x-www-form-urlencoded
+   and to upload files with a form the encoding type attribute needs to be set to: 
+     multipart/form-data
+
+            enctype
+            If the value of the method attribute is post, enctype is the MIME type of the form submission. Possible values:
+
+                application/x-www-form-urlencoded: The default value.
+
+                multipart/form-data: Use this if the form contains <input> elements with type=file.
+
+                text/plain: Useful for debugging purposes.
+
+            This value can be overridden by formenctype attributes on <button>, <input type="submit">, or <input type="image"> elements.
+  
+  In other to parse multipart form data, a middleware needs to be used (There are many parser middleware out there)
+    Multer middleware
+       this can be used to parse multipart form data --> https://github.com/expressjs/multer
+         Use: 
+         upload.single('<value of name attribute of the form>') to allow a single file to be uploaded
+         upload.array('<value of name attribute of the form>') to allow a multiple files to be uploaded
+  
+Cloudinary --> https://cloudinary.com/
+ this is used to store images and video files 
+
+
+dotenv  --> https://github.com/motdotla/dotenv
+ This is a file that is used to store information that you DO NOT WANT TO SHARE with other people or sent to github
+  this file is typically named: .env
+   the . makes it a hidden file
+
+SETTING UP .env file
+  create a file in the root of the project and calle: .env
+    then define Key Value pairs info in the file
+    then install a packge called: dotenv
+    and then use the package to access any Key Value pairs info from the: .env file
+    then in your main .js file (in this case app.js) write this:
+          if(process.env.NODE_ENV !== "production"){
+            require('dotenv').config(); 
+          }
+        process.env.NODE_ENV is an environment variable that is usually development or production 
+      
+      this conditon will check if the environment been used is not production and if NOT
+       then it will add the variables defined in the .env file and add them into the process.env in the NODE APP 
+         so they can be accessible in any file within the project 
+        
+    the way to access the Key value pair is to use: process.env.<Key name>
+          
+            THIS IS NOT DONE THIS WAY IN PRODUCTION
+
+    
+      

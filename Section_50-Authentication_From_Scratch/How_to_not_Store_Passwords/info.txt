@@ -1,0 +1,12 @@
+HASHING FUNCTION
+  Hashing functions are groups of functions of different types and uses
+
+  Cryptographic Hash functions
+   this is used for password Hashing because of this:
+    
+    1. One-way function which is infeasibe to invert (it cannot be reversed)
+    2. Small change in inpute yields large change in the output
+    3. Deterministic - same input yields same output 
+    4. Unlikely to find 2 outputs with same value
+    5. Password Hash functions are deliberately SLOW
+ 

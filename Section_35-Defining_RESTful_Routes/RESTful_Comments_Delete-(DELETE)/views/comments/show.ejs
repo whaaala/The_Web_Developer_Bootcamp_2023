@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show</title>
+</head>
+<body>
+    <h1>Comments id: <%= comment.id %></h1>
+    <h2><%= comment.comment %> - <%= comment.username %></h2>
+    <a href="/comments">Back to Index</a>
+    <a href="/comments/<%= comment.id %>/edit">Edit comment</a>
+     <!-- Install method-override and use it to allow a PATH or a PUT method to be used in the form inside of express and use the attribute name for the method override (set in app.use) as a query string in the action. And MAKE SURRE THE METHOD OF THE FORM IS A DELETE REQUEST-->
+    <form method="post" action="/comments/<%= comment.id %>?_method=DELETE">
+        <button>Delete</button>
+    </form>
+</body>
+</html>

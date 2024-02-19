@@ -1,0 +1,14 @@
+How Passwords are stored 
+ RULE #1 
+  NEVER STORE PASSWORDS in text (never store the passwords as is, in the database)
+
+  HASHING
+   Instade of storing the password as is, HASH the password 
+    the password as is, is ran through something called: hashing function first and then the result of the hashing is then stored in the database
+
+    WHAT IS A HASHING FUNCTION
+     Hashing functions are functions that map input data of some arbitrary size to fixed-size output values
+
+      A hashing function always has to give the same value for one input (everytime the same value is input the output value as to be the same also)
+
+ 

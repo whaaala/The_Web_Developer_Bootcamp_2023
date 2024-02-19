@@ -1,0 +1,6 @@
+JOY 
+ This is a JavaScript validator tool 
+   this is used to validate DATA running through a defined JavaScript Schema
+JOI doc --> https://joi.dev/api/?v=17.9.1
+
+

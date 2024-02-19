@@ -1,0 +1,9 @@
+Bcrypt --> https://github.com/kelektiv/node.bcrypt.js
+ bcryptjs is built entirely in JavaScript
+
+
+
+
+
+
+ 

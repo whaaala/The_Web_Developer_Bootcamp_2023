@@ -1,0 +1,25 @@
+free apis --> https://apilist.fun/collection/free-apis
+              https://free-apis.github.io/#/
+
+
+weather api --> https://openweathermap.org/api
+
+Twillio api doc --> https://www.twilio.com/docs/all
+
+JOSN page --> https://www.json.org/json-en.html
+
+
+starwars api --> https://swapi.dev/api
+catfacts api --?> https://catfact.ninja/
+tvmaze api --> https://www.tvmaze.com/api
+random dad jokes --> https://icanhazdadjoke.com/api
+
+
+Hoppscotch --> https://hoppscotch.io/
+
+
+Request Status Code --> https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+
+AXIOS github --> https://github.com/axios/axios#installing
+
+

@@ -1,0 +1,8 @@
+EJS-Mate Package --> https://github.com/JacksonTian/ejs-mate
+  EJS-Mate:
+    Allows you to some fun useful peices to EJS
+     And what you want to you is something called: Layout
+
+   Layout allows you to:
+     Define some bolier plates 
+      so you can code that you insert inbetween some content 

@@ -1,0 +1,15 @@
+middleware --> https://mongoosejs.com/docs/middleware.html
+
+mongoose gives you the ability to run code before and after certain mongoose operation are executed (certain methods are called)
+
+  there is .pre --> this will run before the method called will be executed
+                 example: 
+                        mainSchema.pre('findOneAndUpdate', function() {
+                            console.log('Middleware on parent document'); // Will be executed
+                        });
+                        
+  there is .post --> this will run after the method called is executed
+                 example: 
+                        schema.post('save', function(doc) {
+                            console.log('%s has been saved', doc._id);
+                        });

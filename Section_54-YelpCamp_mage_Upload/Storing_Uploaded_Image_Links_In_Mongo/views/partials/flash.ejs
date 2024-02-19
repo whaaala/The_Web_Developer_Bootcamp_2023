@@ -1,0 +1,15 @@
+<!-- Write a logic to check if success exist in res.locals then the alert should display, if it does not the alert should nt display -->
+<% if(success && success.length){ %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= success  %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<!-- Write a logic to check if error exist in res.locals then the alert should display, if it does not the alert should nt display -->
+<% if(error && error.length){ %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= error  %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>

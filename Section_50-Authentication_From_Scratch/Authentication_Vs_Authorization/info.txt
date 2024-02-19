@@ -1,0 +1,13 @@
+Authentication
+  this is the process of verifying who a particular user is
+   this used to find out if the user is who they say they are, the are the authentic person (the right person)
+  
+  this is usually done with a username and password, but there are other ways of authenticating users 
+
+
+Authorization
+ this is verifying what a user is able to do in an application, 
+    what the user have access to
+    what the user is allowed to do in terms of CRUD operations
+    
+ this typically happens after a user have been Authenticated 

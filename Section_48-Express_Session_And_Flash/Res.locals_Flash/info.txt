@@ -1,0 +1,12 @@
+Flash
+ The idea of a flash is a place in the session to flash a message to a user 
+   like a success message 
+        a faliure message 
+ that shows up on time and goes away 
+
+
+connect flash package --> https://github.com/jaredhanson/connect-flash
+
+
+    
+  

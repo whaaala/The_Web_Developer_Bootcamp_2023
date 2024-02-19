@@ -1,0 +1,3 @@
+deleteOne() --> https://mongoosejs.com/docs/api/model.html#Model.deleteOne()
+deleteMany() --> https://mongoosejs.com/docs/api/model.html#Model.deleteMany()
+

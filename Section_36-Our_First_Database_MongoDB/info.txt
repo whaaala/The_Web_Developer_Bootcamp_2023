@@ -1,0 +1,59 @@
+MongoDB --> https://www.mongodb.com/
+insights.stackoverflow --> https://survey.stackoverflow.co/2023/#technology
+mongodb installation for mac os -->https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/
+
+show dbs -> used to view all databases in mongodb
+use <database name> --> used to create a new database (if it does not already exist) and switch to the created database
+         also it is used to switch to a different database
+db -> used to see the database that is currently being used
+
+show collections --> is used to see the container for similar DATA
+            A COLLECTION is a container that contain similar DATA 
+
+INSERTING DATA IN MONGO
+----------------------------------------------------------------------------------
+Json and Bson --> https://www.mongodb.com/json-and-bson
+
+MongoDB CRUD Operations --> https://www.mongodb.com/docs/manual/crud/
+CREATE - Insert --> https://www.mongodb.com/docs/manual/reference/insert-methods/
+      db.<collection name>.insertOne({name: "Charlie", age: 3, breed: "corgi", catFriendly: true})
+      db.<collection name>.insertMany([{name: "Charlie", age: 3, breed: "corgi", catFriendly: true},
+                                      {name: "Charlie", age: 3, breed: "corgi", catFriendly: true}]
+                                     )
+      db.<collection name>.insert([{name: "Charlie", age: 3, breed: "corgi", catFriendly: true},
+                                      {name: "Charlie", age: 3, breed: "corgi", catFriendly: true}]
+                                     )
+
+READING DATA FROM MONGO
+----------------------------------------------------------------------------------
+READ - find --> https://www.mongodb.com/docs/manual/reference/method/db.collection.find/
+        db.<collection name>.find() --> will find all the Documents in a collection
+        db.<collection name>.find({<query>}) --> Will find Documents that match the query in a collection
+        db.<collection name>.findOne({<query>}) --> Will find A Document that match the query in a collection
+
+UPDATING DATA IN MONGO
+----------------------------------------------------------------------------------
+UPDATE - update --> https://www.mongodb.com/docs/manual/tutorial/update-documents/
+          https://www.mongodb.com/docs/manual/reference/operator/update/set/#mongodb-update-up.-set
+              $set operator is used to replace values or add key value pair to a document 
+                   db.<collection name>.updateOne({name: "Charlie"}, {$set: {age: 5}})
+                   db.<collection name>.updateMany({catFriendly: true}, {$set: {isAvailable: false}})
+
+           https://www.mongodb.com/docs/manual/reference/method/db.collection.replaceOne/
+                   db.<collection name>.replaceOne({catFriendly: true}, {$set: {isAvailable: false}}) //this is used to replace all the values in the document except for the Id
+
+              $currentDate operator is used to set some value in a document to the current date  
+                   db.<collection name>.updateOne({name: "Charlie"}, {$currentDate: {lastChanged: true}})
+
+DELETING DATA IN MONGO
+----------------------------------------------------------------------------------
+DELETE - delete --> https://www.mongodb.com/docs/manual/tutorial/remove-documents/
+      db.<collection name>.deleteOne({name: "Charlie"})
+      db.<collection name>.deleteMany({catFriendly: true})
+      db.<collection name>.deleteMany({}) // will delete all the documents in a collection
+
+
+OPERATORS THAT ARE USED IN MONGO
+----------------------------------------------------------------------------------
+ https://www.mongodb.com/docs/manual/reference/operator/query/
+ 

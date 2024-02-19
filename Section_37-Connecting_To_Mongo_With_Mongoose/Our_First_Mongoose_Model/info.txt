@@ -1,0 +1,17 @@
+The whole point of using mongoose is to have an easier way to interact with a mongDB database from JavaScript
+
+And the way that the interaction is done in mongoose is the Model
+
+
+Models 
+   Are JavaScript classes that are made with the assistance of mongoose
+     that represent information in a mongDB database (specifically a Model represents information in some collection)
+
+    Model methods --> https://mongoosejs.com/docs/api/model.html
+  
+  To define a model 
+     A Schema needs to be created 
+       An example: 
+          const kittySchema = new mongoose.Schema({
+                 name: String
+           }); 

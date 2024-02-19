@@ -1,0 +1,442 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const path = require('path');
+
+//Require the module created for product, as it as been exported
+const Product = require('./models/product');
+
+//Require the module created for farm, as it as been exported
+const Farm = require('./models/farm');
+
+/********************************************
+ * Require method-override in other to 
+ * override POST REQUEST of the form 
+ ********************************************/
+const methodOverride = require('method-override');
+
+/********************************************************** */
+// Connect to mongoDB
+const db = mongoose.connect('mongodb://127.0.0.1:27017/farmStandTake2')
+.then(() => {
+    console.log('MONGO CONECTION OPEN');
+})
+.catch(err =>{
+    console.log('ERROR CONNECTING TO MONGODB');
+    console.log(err)
+})
+/**********************************************************************/
+
+//Use Express
+const app = express();
+
+//Set up EJS and EJS views folder 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+//Add parers to app in other to be able to get the data send by the user from a form in the raw form
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+/********************************************
+ * Use: app.use to start using the method override 
+ * with a String called: _method that will be used 
+ * as the attribute name
+ ********************************************/
+app.use(methodOverride('_method'));
+
+
+/******************************************************
+*     Add code a list of Categories for a Product     *
+* *****************************************************/
+const categories = ['fruit', 'vegetable', 'dairy'];
+
+/*******************************************************************************/
+
+/********************************************************************************************
+ * ******************************************************************************************
+ *                                    SET UP ROUTES 
+ * ******************************************************************************************
+*********************************************************************************************/
+app.get('/', (req, res) => {
+    res.send("<h1>Welcome!!!!</h1>")
+})
+
+/*************************************************************************************************************** 
+ *                                          FARM ROUTES
+******************************************************************************************************************/
+
+/***************************************************************
+ * Set up a route that displays all farms in the DB
+****************************************************************/
+app.get('/farms', async (req, res) => {
+    //Get all the farms in the database
+    const farms = await Farm.find({})
+    res.render('farms/index', {farms});
+});
+/***************************************************************
+ * End of Set up a route that displays all farms in the DB
+****************************************************************/
+
+/***************************************************************
+ * ************************************************************
+ *                         CREATE A NEW FARM
+ * ************************************************************ 
+*****************************************************************
+         Set up a router to display the form a user 
+           will use in creating the farm
+
+    FYI: THIS ROUTE MUST BE BEFORE THE: '/farms/:id ROUTE
+         OTHERWISE YOU WILL GET AN ERROR
+*****************************************************************/
+app.get('/farms/new', (req, res) => {
+    res.render('farms/new');
+});
+
+/******************************************************************
+ *        Set up a router for when the product created by the user
+ *           is going to be submitted to 
+******************************************************************/
+app.post('/farms', async (req, res) => {
+    //Get the fram sent by the user
+      //from req.body (REMEMBER the data needs to be parsed in other to see the actual DATA )
+    // And pass it as an argument in the instance to create a new Farm 
+    const newFarm = new Farm(req.body);
+
+    //THEN save the new Farm created to the farm collection in the database
+     //FYI: the .save() method takes time to await it (has it a thenable (Promise like Object))
+    await newFarm.save();
+
+    //THEN REDIRECT TO the all farms page
+    res.redirect(`/farms`);
+})
+/***************************************************************
+ * ************************************************************
+ *                       End of CREATE A NEW FARM
+ * ************************************************************ 
+*****************************************************************
+
+/***************************************************************
+ * ************************************************************
+ *                         GET ONE FARM
+ * ************************************************************ 
+*****************************************************************
+
+/***************************************************************
+ * Set up a route that display detils for a farm  
+****************************************************************/
+app.get('/farms/:id', async (req, res) => {
+    //Get the Id of the Farm through req.params
+     // and use desturturing to create an id variable to save it to
+    const { id } = req.params;
+
+    //Then use: findById(id) to get the farm from the database
+    const farm = await Farm.findById(id);
+
+    /*********************************************************************
+     * Pass the EJS html file to use for displaying the farm found
+     *  in the: res.render() function 
+     *  and pass all the products retrieved for the DB as a second argument
+     *  so it can be used in the EJS file
+     ***********************************************************************/
+    res.render('farms/show', { farm });
+});
+
+/***************************************************************
+ * ************************************************************
+ *                        End of GET ONE FARM
+ * ************************************************************ 
+*****************************************************************/
+
+/***************************************************************
+ * ************************************************************
+ *                   CREATE A NEW PRODUCT FOR A FARM
+ * ************************************************************ 
+*****************************************************************
+         Set up a route to display the form a user 
+           will use in creating the product for the farm
+*****************************************************************/
+app.get('/farms/:id/products/new', (req, res) => {
+    //Get the Id of the Farm through req.params
+     // and use desturturing to create an id variable to save it to
+     const { id } = req.params;
+
+    //Pass the categories list a product can be And the id of the farm
+    // to the EJS Page 
+    res.render('products/new', {categories, id})
+})
+
+/******************************************************************
+ *        Set up a route for when the product created by the user
+ *         for a farm is going to be submitted to 
+******************************************************************/
+app.post('/farms/:id/products', async (req, res) => {
+    //Get the Id of the Farm through req.params
+     // and use desturturing to create an id variable to save it to
+     const { id } = req.params;
+     
+     //Find the farm in the database with the id 
+     const farm = await Farm.findById(id)
+
+    //Get the product sent by the user and Deconstruct the properties
+    const { name, price, category } = req.body
+
+    // Then pass the variables as an argument in the instance to create a new Product 
+    const newProduct = new Product({ name, price, category });
+
+    //Then push the new Product created to the Farm  products attribute array
+    farm.products.push(newProduct);
+
+    //Then pass the farm object to the farm attribute in the Product object 
+     //So the id of the can be referenced
+    newProduct.farm = farm; 
+
+    //THEN save the updated farm to the farm collection in the database
+    //FYI: the .save() method takes time to await it (has it a thenable (Promise like Object))
+     await farm.save();
+     
+     //THEN save the new Product created to the product collection in the database
+     //FYI: the .save() method takes time to await it (has it a thenable (Promise like Object))
+    await newProduct.save();
+
+
+
+
+    res.send(farm)
+
+  
+
+    // //THEN save the new Product created to the product collection in the database
+    //  //FYI: the .save() method takes time to await it (has it a thenable (Promise like Object))
+    // await newProduct.save();
+
+    // console.log(newProduct);
+    // // console.log(req.body);
+    // // console.log('MAKING YOUR PRODUCTS!!');
+    
+    // //THEN REDIRECT TO the show page for this new product
+    // res.redirect(`/products/${newProduct._id}`);
+})
+
+/***************************************************************
+ * ************************************************************
+ *                  End of CREATE A NEW PRODUCT FOR A FARM
+ * ************************************************************ 
+
+
+/**************************************************************************************************************
+ *                                          PRODUCT ROUTES
+**************************************************************************************************************/
+
+/***************************************************************
+ * ************************************************************
+ *                         GET ALL PRODUCT
+ * ************************************************************ 
+ 
+
+
+/***************************************************************
+ * Set up a router that displays all Products in the DB
+****************************************************************/
+app.get('/products', async (req, res) => {
+
+        /***************************************************************
+         * ************************************************************
+         *                   CREATE A FILTER TO FILTER THROUGH 
+         *                        CATEGORY FOR PRODUCTS
+         * ************************************************************ 
+        *****************************************************************/
+    //Look in: req.query to see the query as a category and get it
+    const {category} = req.query;
+
+/********************************************************************************** */
+    //Then use an if statement to get all products for the category in the DB
+    // and else to get all products in the DB if the is no category in: req.query
+    if(category){
+        //Query the Product model, and get all products thar matches the category
+        const products = await Product.find({category})
+        
+        //The render the products found for the category
+
+            /*********************************************************************
+            * Pass the EJS html file to use for displaying all products
+            *  in the: res.render() function 
+            *  and pass all the products retrieved for the DB as a second argument
+            *  so it can be used in the EJS file
+            * 
+            *     PASS THE category for the EJS file in other to be able 
+            *      to use it to display the category the product belongs to
+            *      on the page
+            ***********************************************************************/
+        res.render('products/index', {products, category});
+        
+    }else {
+        //Query the Product model, and get all products
+        const products = await Product.find({})
+
+        /*********************************************************************
+         * Pass the EJS html file to use for displaying all products
+         *  in the: res.render() function 
+         *  and pass all the products retrieved for the DB as a second argument
+         *  so it can be used in the EJS file
+         * 
+         * *     PASS category:'All' for the EJS file in other to be able 
+            *      to use it to display the category the product belongs to
+            *      on the page
+         ***********************************************************************/
+        res.render('products/index', {products, category:'All'});
+    }
+
+    // res.send("<h1>ALL PRODUCTS WILL BE HERE!</h1>")
+
+});
+/***********************************************************************************
+ * ******************************************************************************
+ **********************************************************************************/
+
+/***************************************************************
+ * ************************************************************
+ *                         CREATE A NEW PRODUCT
+ * ************************************************************ 
+*****************************************************************
+
+         Set up a router to display the form a user 
+           will use in creating the product
+
+    FYI: THIS ROUTE MUST BE BEFORE THE: '/products/:id ROUTE
+         OTHERWISE YOU WILL GET AN ERROR
+*****************************************************************/
+app.get('/products/new', (req, res) => {
+    //pass in the categories Array created to the EJS file
+    res.render('products/new', {categories});
+});
+
+/******************************************************************
+ *        Set up a router for when the product created by the user
+ *           is going to be submitted to 
+******************************************************************/
+app.post('/products', async (req, res) => {
+    //Get the product sent by the user
+      //from req.body (REMEMBER the data needs to be parsed in other to see the actual DATA )
+    // And pass it as an argument in the instance to create a new Product 
+    const newProduct = new Product(req.body);
+
+    //THEN save the new Product created to the product collection in the database
+     //FYI: the .save() method takes time to await it (has it a thenable (Promise like Object))
+    await newProduct.save();
+
+    console.log(newProduct);
+    // console.log(req.body);
+    // console.log('MAKING YOUR PRODUCTS!!');
+    
+    //THEN REDIRECT TO the show page for this new product
+    res.redirect(`/products/${newProduct._id}`);
+})
+/***********************************************************************************
+ * ******************************************************************************
+ **********************************************************************************/
+
+
+/***************************************************************
+ * ************************************************************
+ *                         GET ONE PRODUCT
+ * ************************************************************ 
+*****************************************************************
+
+/***************************************************************
+ * Set up a router that display datils for a Product in 
+****************************************************************/
+app.get('/products/:id', async (req, res) => {
+    //Get the Id of the Product through req.params
+     // and use desturturing to create an id variable to save it to
+    const { id } = req.params;
+
+    //Then use: findById(id) to get the product from the database
+    const product = await Product.findById(id);
+    console.log(product);
+    // res.re('Details page!')
+
+    /*********************************************************************
+     * Pass the EJS html file to use for displaying the product found
+     *  in the: res.render() function 
+     *  and pass all the products retrieved for the DB as a second argument
+     *  so it can be used in the EJS file
+     ***********************************************************************/
+    res.render('products/show', { product });
+});
+
+/***********************************************************************************
+ * ******************************************************************************
+ **********************************************************************************/
+
+/***************************************************************
+ * ************************************************************
+ *                         UPDATE A PRODUCT
+ * ************************************************************ 
+*****************************************************************/
+     /********************************************* 
+      *     Display the product to be updated     *
+     **********************************************/
+app.get('/products/:id/edit', async (req, res) => {
+    //Get the Id of the Product through req.params
+     // and use desturturing to create an id variable to save it to
+     const { id } = req.params;
+
+    //Then use: findById(id) to get the product from the database
+    const product = await Product.findById(id);
+
+    //The pass it as a second argument to the render function 
+     // in other to able to use it to display the product on the 
+      // form of the EJS file
+    res.render('products/edit', {product, categories}) ;
+})
+
+     /********************************************* 
+      *     send the update product to the DB     *
+     **********************************************/
+app.put('/products/:id/', async (req, res) => {
+    //Get the Id of the Product through req.params
+     // and use desturturing to create an id variable to save it to
+     const { id } = req.params;
+
+     //Then use: findByIdAndUpdate(id, req.body) to get and update the product in the database
+      // Pass {runValidators: true} as a third argument in other to make that 
+        // findByIdAndUpdate() validation is enabled (as it is disabled by default) 
+        // The:  new: true, is to return the product updated NOT the old product
+     const product = await Product.findByIdAndUpdate(id, req.body, {runValidators: true, new: true});
+
+     //THEN REDIRECT TO the show page for this new product
+    res.redirect(`/products/${product._id}`);
+
+    // console.log(req.body);
+    // res.send('PUT!!!!');
+}),
+/***********************************************************************************
+ * ******************************************************************************
+ **********************************************************************************/
+
+/***************************************************************
+ * ************************************************************
+ *                         DELETE A PRODUCT
+ * ************************************************************ 
+*****************************************************************/
+app.delete('/products/:id', async (req, res) => {
+    //Get the Id of the Product through req.params
+     // and use desturturing to create an id variable to save it to
+     const { id } = req.params;
+
+     //Then use: findByIdAndDelete(id) to get and Delete the product in the database
+      // await the findByIdAndDelete(id), as ti takes long to return (it is a thenable)
+    const deleteProduct = await Product.findByIdAndDelete(id);
+
+     //THEN REDIRECT TO the index page that show all the products
+     res.redirect('/products');
+    
+});
+
+/************************************************************`**************************
+****************************************************************************************/
+
+//Set App to listen to Requests 
+app.listen(3000, () => {
+    console.log("Listening on port 3000");
+});

@@ -1,0 +1,6 @@
+Virtuals
+  Gives the ability to Add Properties to a Schema that Don't actually exist in the database, but that we have access to thanks to mongoose
+
+Virtuals --> https://mongoosejs.com/docs/guide.html#virtuals
+
+

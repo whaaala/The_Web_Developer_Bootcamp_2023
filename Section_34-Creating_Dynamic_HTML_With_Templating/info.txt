@@ -1,0 +1,17 @@
+Embedded JavaScript Templating --> https://ejs.co/
+
+Handlebarssjs --> https://handlebarsjs.com/
+
+Jade Language --> https://jade-lang.com/
+
+Pugjs --> https://pugjs.org/api/getting-started.html
+
+Nunjucks --> https://mozilla.github.io/nunjucks/
+
+
+THIS ARE ALL USED FOR Templating
+
+THEY ALL OUTPUT HTML
+
+
+app.set --> https://expressjs.com/en/4x/api.html#app.set

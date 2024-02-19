@@ -1,0 +1,7 @@
+res.cookie --> https://expressjs.com/en/4x/api.html#res.cookie
+
+cookie-parser --> https://www.npmjs.com/package/cookie-parser
+cookie-parser 
+  this package that is used to access cookie data that is on req.cookies 
+
+cookies are not used to store information that is important

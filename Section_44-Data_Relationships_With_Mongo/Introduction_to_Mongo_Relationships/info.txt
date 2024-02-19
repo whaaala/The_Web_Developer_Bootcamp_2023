@@ -1,0 +1,3 @@
+Relationships between DATA in mongoDB
+  In a real world, in an Appliction there is lots of different entities(Things) that are stored in a Database 
+    And this entities are connected to each other 

@@ -1,0 +1,4 @@
+update()
+updateOne() --> https://mongoosejs.com/docs/api/model.html#Model.updateOne()
+updateMany() --> https://mongoosejs.com/docs/api/model.html#Model.updateMany()
+

@@ -1,0 +1,7 @@
+Handle Async Errors
+    Aynsc Errors
+     for erros returned from Async functions that are called by route handlers amd middlewares, you MUST pass them to the next() function 
+       where express will catch and prosses them 
+
+Handling Error not created by Express in Asynchronous functions
+   try-catch block can be used to catch erorrs that are created in an Asynchronous function

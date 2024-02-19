@@ -1,0 +1,25 @@
+Middleware:
+  Are the build block of everything is Express
+
+  They are functions that runs at some point during the REQUEST and RESPONSE lifecycle
+     They between the time a REQUEST enters Epxress and when the RESPONSE leaves Epxress or the codes stops running
+
+Middleware:
+ is just a function OR functions
+  that runs inbetween REQUEST and RESPONSE
+
+A Middleware function has access to:
+  The REQUEST Object
+   and
+  The RESPONSE Object
+
+ They can make changes to the REQUEST and RESPONSE Object 
+
+A Middleware can  
+ End the whole cycle (by sending back a RESPONSE)
+ OR
+ It can be one link in a chain Middlewares 
+  And it can call the next middleware 
+    with the next() function 
+
+  
