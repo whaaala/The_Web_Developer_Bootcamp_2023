@@ -15,6 +15,21 @@ setTimeout(function() {
 console.log("I AM AT THE END OF THE FILE!")
 
 
+//This is used for //http://latentflip.com/loupe/ to see the call stack in action
+// function multiply(x, y){ 
+//     return x * y
+// }
+
+// function square(x) {
+//     return  multiply(x, x)
+// }
+
+// function isRightTrianagle(a, b, c) {
+//     return square(a) + square(b) === square(c)
+// }
+
+// isRightTrianagle(3, 4, 5);
+
 
 
 
